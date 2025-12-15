@@ -60,7 +60,7 @@ runtime:
   adapter:
     type: "crewai"
     
-    entry_point: "src.main:crew"
+    entry_point: "src.main:run"
     
     environment_variables:
       - "OPENAI_API_KEY"
