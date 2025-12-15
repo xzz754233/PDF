@@ -1,6 +1,5 @@
 version: "0.4.0"
 
-
 persona:
   name: "SaaS Builder Crew"
   description: "Turns PDF requirements into analysis, resources, and MVP code."
@@ -22,8 +21,8 @@ persona:
   license: "MIT" 
   
   assets:
-    icon: "https://github.com/xzz754233/PDF/blob/main/assets/icon.png" 
-    banner: "https://github.com/xzz754233/PDF/blob/main/assets/banner.jpg"
+    icon: "https://raw.githubusercontent.com/xzz754233/PDF/main/assets/icon.png" 
+    banner: "https://raw.githubusercontent.com/xzz754233/PDF/main/assets/banner.jpg"
 
 pricing:
   type: "free"
@@ -36,9 +35,9 @@ interface:
       pdf_path:
         type: "string"
         title: "Project Requirement PDF"
-        description: "Path to the PDF file containing project details."
+        description: "Upload your requirements file here."
         x-ui-widget: "file" 
-        default: "my saas project (1).pdf"
+        default: "requirements.pdf"
       
       llm_model:
         type: "string"
@@ -66,8 +65,8 @@ runtime:
       - "OPENAI_API_KEY"
       - "SERPER_API_KEY"
       - "GITHUB_TOKEN"
-      - "LINKUP_API_KEY" # Optional in code, but listed here for awareness
-      - "EXA_API_KEY"    # Optional in code, but listed here for awareness
+      - "LINKUP_API_KEY" 
+      - "EXA_API_KEY"    
 
   injections:
     llm_client: true 
@@ -77,4 +76,4 @@ policies:
   max_steps: 100 
   human_in_the_loop:
     enabled: true
-    triggers: ["GithubSearchTool"] 
+    triggers: ["GithubSearchTool"]
