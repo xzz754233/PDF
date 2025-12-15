@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "saas-builder-crew"
+version = "0.1.0"
+description = "Turns PDF requirements into analysis, resources, and MVP code."
+authors = ["Rainy"]
+readme = "README.md"
+packages = [{include = "src"}]
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.13"
+crewai = "^0.30.0"
+crewai-tools = "^0.2.0"
+pypdf2 = "^3.0.0"
+python-dotenv = "^1.0.0"
+
+[tool.poetry.scripts]
+start = "src.main:run"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
