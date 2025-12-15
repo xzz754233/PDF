@@ -1,0 +1,80 @@
+version: "0.4.0"
+
+
+persona:
+  name: "SaaS Builder Crew"
+  description: "Turns PDF requirements into analysis, resources, and MVP code."
+  
+  full_description: |
+    # SaaS Project Builder
+    This crew consists of three specialized agents:
+    1. **Project Analyst**: Extracts requirements from PDF and assesses technical feasibility.
+    2. **Resource Specialist**: Searches GitHub, Kaggle, and ArXiv for existing tools and datasets.
+    3. **Senior Developer**: Generates system architecture, boilerplate code, and testing frameworks.
+    
+    ## Output
+    - Comprehensive Project Analysis (Markdown)
+    - Curated Resource List (Markdown)
+    - Complete MVP Project Code Structure (Python)
+
+  authors: ["Rainy"] 
+  tags: ["development", "coding", "analysis", "crewai", "saas"]
+  license: "MIT" 
+  
+  assets:
+    icon: "https://github.com/xzz754233/PDF/blob/main/assets/icon.png" 
+    banner: "https://github.com/xzz754233/PDF/blob/main/assets/banner.jpg"
+
+pricing:
+  type: "free"
+
+interface:
+  input:
+    type: "object"
+    required: ["pdf_path"]
+    properties:
+      pdf_path:
+        type: "string"
+        title: "Project Requirement PDF"
+        description: "Path to the PDF file containing project details."
+        x-ui-widget: "file" 
+        default: "my saas project (1).pdf"
+      
+      llm_model:
+        type: "string"
+        title: "LLM Model"
+        description: "The model to use for analysis and coding."
+        default: "gpt-4o"
+        enum: ["gpt-4o", "gpt-4-turbo", "openai/gpt-5-chat-latest"]
+
+  output:
+    type: "object"
+    description: "Returns the final execution summary and file paths."
+
+  state:
+    format: "json"
+    schema:
+      type: "object"
+
+runtime:
+  adapter:
+    type: "crewai"
+    
+    entry_point: "src.main:crew"
+    
+    environment_variables:
+      - "OPENAI_API_KEY"
+      - "SERPER_API_KEY"
+      - "GITHUB_TOKEN"
+      - "LINKUP_API_KEY" # Optional in code, but listed here for awareness
+      - "EXA_API_KEY"    # Optional in code, but listed here for awareness
+
+  injections:
+    llm_client: true 
+
+policies:
+  allow_internet_access: true
+  max_steps: 100 
+  human_in_the_loop:
+    enabled: true
+    triggers: ["GithubSearchTool"] 
