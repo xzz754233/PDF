@@ -2,7 +2,7 @@ version: "0.4.1"
 
 persona:
   name: "SaaS Launchpad (Lite)"
-  version: "0.1.0"
+  version: "0.1.1"
   
   description: "Rapid MVP tester. Converts ideas into Specs, Tech Stack, and Skeleton Code in 3 steps."
   
