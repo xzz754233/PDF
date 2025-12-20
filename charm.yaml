@@ -2,7 +2,7 @@ version: "0.4.1"
 
 persona:
   name: "SaaS Launchpad (Lite)"
-  version: "0.1.4"
+  version: "0.1.5"
   
   description: "Rapid MVP tester. Converts ideas into Specs, Tech Stack, and Skeleton Code in 3 steps."
   
@@ -35,9 +35,9 @@ pricing:
 interface:
   input:
     type: "object"
-    required: ["project_text"]
+    required: ["task"]
     properties:
-      project_text:
+      task:
         type: "string"
         title: "Project Idea"
         description: "Describe your idea simply (e.g., 'An AI agent that summarizes news')."
