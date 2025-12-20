@@ -1,21 +1,22 @@
 import os
+import sys
 from crewai import Agent, Task, Crew, Process
 from crewai_tools import SerperDevTool, FileWriterTool
 from dotenv import load_dotenv
 
-# Load API keys from .env (Requires OPENAI_API_KEY and SERPER_API_KEY)
-# Note: CrewAI will automatically use the OPENAI_MODEL_NAME from .env if set.
+# Load API keys from .env (For local testing only. Charm injects these automatically.)
 load_dotenv()
 
-def run_lite_crew():
-    print("=== Starting SaaS Launchpad Crew (Lite Version) ===")
+def run_lite_crew(inputs=None):
+    """
+    Charm Cloud Entry Point.
     
-    # 1. Get User Input
-    idea = input("\nPlease enter your project idea (e.g., An AI Line Bot that tracks my expenses): ")
-    if not idea:
-        print("No idea entered. Exiting...")
-        return
-
+    Args:
+        inputs (dict, optional): Input data from the frontend. 
+                                 Example: {'task': 'I want to build a scraping bot...'}
+    """
+    print("=== Initializing SaaS Launchpad Crew (Lite Version) ===")
+    
     # 2. Initialize Core Tools
     search_tool = SerperDevTool()
     file_writer = FileWriterTool()
@@ -23,7 +24,6 @@ def run_lite_crew():
     # 3. Define Agents
     
     # Agent A: The Analyst
-    # Responsible for breaking down the abstract idea into concrete requirements.
     analyst = Agent(
         role='Lead Product Analyst',
         goal='Analyze the user idea and produce a clear Product Requirements Document (PRD).',
@@ -37,7 +37,6 @@ def run_lite_crew():
     )
 
     # Agent B: The Resource Hunter
-    # Responsible for finding existing tools to prevent reinventing the wheel.
     resource_hunter = Agent(
         role='Tech Resource Scout',
         goal='Find the most suitable Python libraries, APIs, and open-source projects.',
@@ -51,7 +50,6 @@ def run_lite_crew():
     )
 
     # Agent C: The Architect
-    # Responsible for synthesizing the spec and stack into a code structure.
     architect = Agent(
         role='Senior Technical Architect',
         goal='Produce the core MVP code structure based on analysis and resources.',
@@ -59,17 +57,22 @@ def run_lite_crew():
             "You excel at rapidly building functional MVPs. "
             "You focus on code simplicity, modularity, and best practices."
         ),
-        tools=[file_writer], # The architect focuses on writing code, not searching.
+        tools=[file_writer],
         verbose=True,
         memory=True
     )
 
-    # 4. Define Tasks (Consolidated into 3 core steps)
-
+    # 4. Define Tasks
+    
+    # [Critical Change] 
+    # We use '{task}' placeholder here instead of f-string.
+    # CrewAI will automatically replace {task} with the value from inputs['task'] 
+    # when the platform calls crew.kickoff(inputs=...).
+    
     # Task 1: Specification & Analysis
     task_analysis = Task(
         description=(
-            f"Analyze the user's idea: '{idea}'.\n"
+            "Analyze the user's idea: '{task}'.\n"  # <--- Matches charm.yaml input property
             "1. Define 3-5 core features (MVP scope).\n"
             "2. Identify potential technical challenges.\n"
             "3. Use search_tool to find similar products and list 2 competitors.\n"
@@ -104,19 +107,42 @@ def run_lite_crew():
         agent=architect
     )
 
-    # 5. Assemble and Execute the Crew
+    # 5. Assemble the Crew
     crew = Crew(
         agents=[analyst, resource_hunter, architect],
         tasks=[task_analysis, task_resources, task_coding],
         process=Process.sequential
     )
 
-    result = crew.kickoff()
+    # [Critical Change] 
+    # Do NOT call crew.kickoff() here.
+    # Just return the object. The Charm Platform handles the execution.
+    return crew
+
+
+# --- Local Testing Logic ---
+# This block runs ONLY when you execute `python src/main.py` on your machine.
+# It simulates what the Charm Platform does.
+if __name__ == "__main__":
+    print("## Local Testing Mode ##")
+    
+    # 1. Simulate Frontend Input
+    user_idea = input("\nPlease enter your project idea: ")
+    if not user_idea:
+        print("No idea entered. Exiting...")
+        sys.exit()
+    
+    # 2. Get the Crew Object
+    my_crew = run_lite_crew()
+    
+    # 3. Simulate Platform Execution
+    # We construct the inputs dictionary just like the Frontend would.
+    test_inputs = {"task": user_idea}
+    
+    print(f"\n[System] Kicking off crew with inputs: {test_inputs}\n")
+    result = my_crew.kickoff(inputs=test_inputs)
     
     print("\n\n########################")
-    print("## Workflow Complete! Output files located in 'lite_output/' ##")
+    print("## Workflow Complete! ##")
     print("########################\n")
     print(result)
-
-if __name__ == "__main__":
-    run_lite_crew()

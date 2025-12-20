@@ -2,7 +2,7 @@ version: "0.4.1"
 
 persona:
   name: "SaaS Launchpad (Lite)"
-  version: "0.1.3"
+  version: "0.1.4"
   
   description: "Rapid MVP tester. Converts ideas into Specs, Tech Stack, and Skeleton Code in 3 steps."
   
@@ -39,7 +39,7 @@ interface:
     properties:
       project_text:
         type: "string"
-        title: "📝 Project Idea"
+        title: "Project Idea"
         description: "Describe your idea simply (e.g., 'An AI agent that summarizes news')."
         x-ui-widget: "textarea"
       
@@ -62,14 +62,11 @@ runtime:
   adapter:
     type: "crewai"
     
-    # 指向上一段程式碼中的主函數名稱
-    # 如果你的 Python 檔名是 main.py，且函數名是 run_lite_crew，則保持如下：
     entry_point: "src.main:run_lite_crew"
     
     environment_variables:
       - "OPENAI_API_KEY"
       - "SERPER_API_KEY"
-      # 移除了 GITHUB_TOKEN, LINKUP, EXA 以配合 Lite 版本的依賴瘦身
 
   injections:
     llm_client: true
@@ -78,5 +75,4 @@ policies:
   allow_internet_access: true
   max_steps: 50
   human_in_the_loop:
-    # Lite 版本關閉人工介入，讓流程一次跑完以便測試
     enabled: false
