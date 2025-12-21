@@ -2,27 +2,37 @@ version: "0.4.1"
 
 persona:
   name: "SaaS Launchpad (Lite)"
-  version: "0.1.5"
+  version: "0.1.6"
   
-  description: "Rapid MVP tester. Converts ideas into Specs, Tech Stack, and Skeleton Code in 3 steps."
+  description: "Rapid MVP Architect. Turns ideas into Specs, Tech Stacks, Code, and a PDF Report."
   
   full_description: |
-    # SaaS Launchpad - Lite Version
+    # SaaS Launchpad (Lite)
     
-    A lightweight, streamlined version of the SaaS Launchpad Crew designed for rapid iteration and testing.
+    Turn a rough text idea into a technical blueprint and code skeleton in minutes. This agent simulates a mini engineering team to validate your concepts.
     
-    ## The 3-Step Workflow
-    1. **Spec Analysis**: Breaks down your idea into core features and identifies risks.
-    2. **Tech Stack**: Recommends the best Python libraries and APIs.
-    3. **Skeleton Code**: Generates a single-file `main.py` with the complete architectural skeleton.
+    ## How to Use
+    Simply describe your software idea in the **Project Idea** field. Be as specific as possible.
     
-    ## Best For
-    - Rapid prototyping
-    - Testing CrewAI logic
-    - Debugging prompt effectiveness
+    **Good Input Examples:**
+    * "A Python script that scrapes Shopee prices daily and notifies me on Line."
+    * "An AI agent that reads PDF resumes and extracts candidate skills."
+    * "A Telegram bot that tracks Ethereum gas fees."
+
+    ## What You Will Get
+    The crew will generate 4 essential files for your MVP:
+    
+    1. **Spec Analysis (`1_spec.md`)**: 
+       Core feature breakdown, risk assessment, and competitor analysis.
+    2. **Tech Stack (`2_tech_stack.md`)**: 
+       Recommended Python libraries (with `pip install` commands) and API providers.
+    3. **Skeleton Code (`3_mvp_skeleton.py`)**: 
+       A logically structured `main.py` with classes, functions, and comments ready for development.
+    4. **Final Report (`final_report.pdf`)**: 
+       A consolidated, professional PDF document containing all the above insights.
     
   authors: ["Rainy"]
-  tags: ["lite", "testing", "mvp", "python"]
+  tags: ["lite", "mvp", "python", "architecture"]
   license: "MIT"
   
   assets:
@@ -51,7 +61,7 @@ interface:
 
   output:
     type: "object"
-    description: "Returns the 3 generated markdown/python files."
+    description: "Returns a ZIP file containing the Spec, Tech Stack, Code Skeleton, and the Final PDF Report."
 
   state:
     format: "json"

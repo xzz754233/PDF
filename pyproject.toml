@@ -12,6 +12,8 @@ crewai = "^0.85.0"
 crewai-tools = "^0.14.0"
 python-dotenv = "^1.0.0"
 setuptools = "^75.0.0"
+markdown = "^3.7"
+xhtml2pdf = "^0.2.16"
 
 [tool.poetry.scripts]
 start = "src.main:run_lite_crew"
