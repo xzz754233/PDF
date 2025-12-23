@@ -2,7 +2,7 @@ version: "0.4.1"
 
 persona:
   name: "SaaS Launchpad"
-  version: "0.1.9"
+  version: "0.1.10"
   
   description: "Rapid MVP Architect. Turns ideas into Specs, Tech Stacks, Code, and a PDF Report."
   
