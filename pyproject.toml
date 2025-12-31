@@ -14,7 +14,6 @@ python-dotenv = "^1.0.0"
 setuptools = "^75.0.0"
 markdown = "^3.7"
 xhtml2pdf = "^0.2.16"
-autopep8 = "^2.0.4"
 
 [tool.poetry.scripts]
 start = "src.main:run_lite_crew"

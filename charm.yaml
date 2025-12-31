@@ -2,38 +2,31 @@ version: "0.4.1"
 
 persona:
   name: "SaaS Launchpad"
-  version: "0.1.16"
+  version: "0.2.0" 
   
-  description: "Rapid MVP Architect. Turns ideas into Specs, Tech Stacks, Code, and a PDF Report."
+  description: "Your AI Technical Co-Founder. Turns rough ideas into actionable blueprints and code skeletons instantly."
   
   full_description: |
-    # SaaS Launchpad
-    
-    Turn a rough text idea into a technical blueprint and code skeleton in minutes. This agent simulates a mini engineering team to validate your concepts.
-    
-    ## How to Use
-    Simply describe your software idea in the field. Be as specific as possible.
-    
-    **Good Input Examples:**
-    * "A Python script that scrapes Shopee prices daily and notifies me on Line."
-    * "An AI agent that reads PDF resumes and extracts candidate skills."
-    * "A Telegram bot that tracks Ethereum gas fees."
 
-    ## What You Will Get
-    The crew will generate 4 essential files for your MVP:
+    Meet your new **AI Technical Co-Founder**. The SaaS Launchpad is a specialized engineering team that validates your software concepts in minutes.
     
-    1. **Spec Analysis (`1_spec.md`)**: 
-       Core feature breakdown, risk assessment, and competitor analysis.
-    2. **Tech Stack (`2_tech_stack.md`)**: 
-       Recommended Python libraries (with `pip install` commands) and API providers.
-    3. **Skeleton Code (`3_mvp_skeleton.py`)**: 
-       A logically structured `main.py` with classes, functions, and comments ready for development.
-    4. **Final Report (`final_report.pdf`)**: 
-       A consolidated, professional PDF document containing all the above insights.
+    Don't know which tech stack to use? Unsure about the architecture? Just have a rough idea? We've got you covered.
     
+    ## How It Works
+    **Input:** Just describe your idea in plain English.
+    **Process:** The crew analyzes, researches, and architects the solution.
+    **Output:** You receive a comprehensive **Project Blueprint PDF**.
+    
+    ## What You Get
+    We generate a ZIP file containing everything you need to start coding:
+    
+    1.  **The Strategy**: Core features, risk assessment, and market analysis.
+    2.  **The Stack**: Curated Python libraries and APIs best suited for your goal.
+    3.  **The Skeleton**: A production-ready `main.py` structure with best practices.
+    4.  **Final Report**: A professional, consolidated document ready to share with stakeholders.
+
   authors: ["Rainy"]
-  tags: ["lite", "mvp", "python", "architecture"]
-  license: "MIT"
+  tags: ["startup", "mvp", "architecture", "python"]
   
   assets:
     icon: "https://raw.githubusercontent.com/ucmind/PDF/main/assets/icon.png"
@@ -49,19 +42,19 @@ interface:
     properties:
       task:
         type: "string"
-        title: "Project Idea"
-        description: "Describe your idea simply (e.g., 'An AI agent that summarizes news')."
+        title: "What are you building?" 
+        description: "Describe your app idea. Example: 'A crypto bot that tracks whale movements' or 'An AI tool to summarize legal PDFs'."
         x-ui-widget: "textarea"
       
       llm_model:
         type: "string"
-        title: "Model"
-        description: "Select the model for the crew."
+        title: "AI Brain Power"
+        description: "Select the intelligence level. GPT-4o is recommended for complex coding tasks."
         default: "gpt-4o"
 
   output:
     type: "object"
-    description: "Returns a ZIP file containing the Spec, Tech Stack, Code Skeleton, and the Final PDF Report."
+    description: "Returns a downloadable ZIP file containing the comprehensive PDF Report and source code."
 
   state:
     format: "json"
