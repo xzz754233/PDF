@@ -2,7 +2,7 @@ version: "0.4.1"
 
 persona:
   name: "SaaS Launchpad"
-  version: "0.2.4" 
+  version: "0.1.4" 
   
   description: "Your AI Technical Co-Founder. Turns rough ideas into actionable blueprints and code skeletons instantly."
   
@@ -12,25 +12,31 @@ persona:
     
     Don't know which tech stack to use? Unsure about the architecture? Just have a rough idea? We've got you covered.
     
-    ## How It Works
-    **Input:** Just describe your idea in plain English.
-    **Process:** The crew analyzes, researches, and architects the solution.
-    **Output:** You receive a comprehensive **Project Blueprint PDF**.
+    ### How It Works
+
+    - **Input:** Just describe your idea in plain English.
+
+    - **Process:** The crew analyzes, researches, and architects the solution.
+
+    - **Output:** You receive a comprehensive **Project Blueprint PDF**.
     
-    ## What You Get
+    ### What You Get
     We generate a ZIP file containing everything you need to start coding:
     
-    1.  **The Strategy**: Core features, risk assessment, and market analysis.
-    2.  **The Stack**: Curated Python libraries and APIs best suited for your goal.
-    3.  **The Skeleton**: A production-ready `main.py` structure with best practices.
-    4.  **Final Report**: A professional, consolidated document ready to share with stakeholders.
+    - **The Strategy**: Core features, risk assessment, and market analysis.
+
+    - **The Stack**: Curated Python libraries and APIs best suited for your goal.
+
+    - **The Skeleton**: A production-ready `main.py` structure with best practices.
+
+    - **Final Report**: A professional, consolidated document ready to share with stakeholders.
 
   authors: ["Rainy"]
   tags: ["startup", "mvp", "architecture", "python"]
   
   assets:
-    icon: "https://raw.githubusercontent.com/ucmind/PDF/main/assets/icon.png"
-    banner: "https://raw.githubusercontent.com/ucmind/PDF/main/assets/banner.png"
+    icon: "https://raw.githubusercontent.com/xzz754233/PDF/main/assets/icon.png"
+    banner: "https://raw.githubusercontent.com/xzz754233/PDF/main/assets/banner.png"
 
 pricing:
   type: "free"
